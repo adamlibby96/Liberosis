@@ -29,10 +29,10 @@ public class Interact : MonoBehaviour {
         // constantly check for interactable objects
         interact();
         
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Debug.Log(inventory.displayAll());
-        }
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    Debug.Log(inventory.displayAll());
+        //}
     
 	}
 

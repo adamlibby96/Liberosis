@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class InventorySystem : MonoBehaviour {
@@ -12,12 +13,32 @@ public class InventorySystem : MonoBehaviour {
     private Dictionary<Type, items> inventory;
     private string s = "";
 
+    [SerializeField] private Text healthCountTF;
+    [SerializeField] private Text puzzleCountTF;
+    [SerializeField] private GameObject inventoryUI;
+
     // Use this for initialization
     void Start () {
         inventory = new Dictionary<Type, items>();
+        healthCountTF.text = "0x";
+        puzzleCountTF.text = "0x";
+        inventoryUI.SetActive(false);
 	}
-	
-	public void addItem(string name, Type type)
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.I))
+        {
+            inventoryUI.SetActive(true);
+        }
+        else
+        {
+            inventoryUI.SetActive(false);
+        }
+    }
+
+
+    public void addItem(string name, Type type)
     {
         
 
@@ -27,6 +48,14 @@ public class InventorySystem : MonoBehaviour {
         {
             itemTemp.quantity++;
             inventory[type] = itemTemp;
+            if (type == Type.Health)
+            {
+                healthCountTF.text = itemTemp.quantity + "x";
+            }
+            if (type == Type.Puzzle)
+            {
+                puzzleCountTF.text = itemTemp.quantity + "x";
+            }
         }
         else
         {
@@ -35,6 +64,14 @@ public class InventorySystem : MonoBehaviour {
             i.item = temp;
             i.quantity = 1;
             inventory.Add(type, i);
+            if (type == Type.Health)
+            {
+                healthCountTF.text = i.quantity + "x";
+            }
+            if (type == Type.Puzzle)
+            {
+                puzzleCountTF.text = i.quantity + "x";
+            }
         }
 
         
