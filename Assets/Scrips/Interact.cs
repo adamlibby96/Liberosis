@@ -56,10 +56,6 @@ public class Interact : MonoBehaviour {
                     interactText.enabled = false;
                 }
             }
-            else
-            {
-                //Debug.Log("Not interactable");
-            }
         } else
         {
             if (previousObject)
@@ -69,11 +65,6 @@ public class Interact : MonoBehaviour {
                 interactText.enabled = false;
             }
         }
-
-        //if (currentObject != previousObject)
-        //{
-        //    previousObject.GetComponent<InteractableObject>().originalMaterial();
-        //}
     }
 
     private void pickUpItem(GameObject obj)
@@ -91,8 +82,9 @@ public class Interact : MonoBehaviour {
                 added = true;
                 break;
             case Type.Weapon:
-                inventory.addItem("weapon", Type.Weapon);
-                added = true;
+                //inventory.addItem("weapon", Type.Weapon);
+                transform.GetComponent<Player>().equipWeapon(obj);
+                //added = true;
                 break;
             default:
                 Debug.Log("Could not determine object type.");
