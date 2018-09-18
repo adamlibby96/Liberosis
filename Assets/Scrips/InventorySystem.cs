@@ -27,14 +27,11 @@ public class InventorySystem : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            inventoryUI.SetActive(true);
+            inventoryUI.SetActive(!inventoryUI.activeSelf);
         }
-        else
-        {
-            inventoryUI.SetActive(false);
-        }
+        
     }
 
 

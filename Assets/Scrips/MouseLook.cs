@@ -6,6 +6,7 @@ public class MouseLook : MonoBehaviour {
     public float mouseSpeed = 3.0f;
     public float minVert = -80f;
     public float maxVert = 45f;
+    [SerializeField] private GameObject inventoryUI;
 
     private float rotX = 0;
 
@@ -16,15 +17,19 @@ public class MouseLook : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSpeed; // * Time.deltaTime;
-        if (mouseY != 0)
+        // if the inventory is not active, we can look around.
+        if (!inventoryUI.activeSelf)
         {
-            rotX -= mouseY;
-            rotX = Mathf.Clamp(rotX, minVert, maxVert);
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSpeed; // * Time.deltaTime;
+            if (mouseY != 0)
+            {
+                rotX -= mouseY;
+                rotX = Mathf.Clamp(rotX, minVert, maxVert);
 
-            float rotY = transform.localEulerAngles.y;
+                float rotY = transform.localEulerAngles.y;
 
-            transform.localEulerAngles = new Vector3(rotX, rotY, 0);
+                transform.localEulerAngles = new Vector3(rotX, rotY, 0);
+            }
         }
     }
 }
